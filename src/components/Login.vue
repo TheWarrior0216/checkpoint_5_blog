@@ -28,7 +28,17 @@ async function logout() {
           aria-expanded="false">
           <div v-if="account?.picture || identity?.picture">
             <img :src="account?.picture || identity?.picture" alt="account photo" class="pfp" />
-            <h2>{{ account?.name }}</h2>
+            <h2 class="my-2">{{ account?.name }}</h2>
+            <a v-if="account?.linkedin" :href="account?.linkedin">
+              <h2 class="my-5">Linkedin Profile</h2>
+            </a>
+            <a v-if="account?.github" :href="account?.github">
+              <h2 class="my-5">Github Profile</h2>
+            </a>
+            <a v-if="account?.resume" :href="account?.resume">
+              <h2 class="my-5">resume Profile</h2>
+            </a>
+
           </div>
         </div>
         <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">

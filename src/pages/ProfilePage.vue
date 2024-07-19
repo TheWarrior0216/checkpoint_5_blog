@@ -1,21 +1,18 @@
 <script setup>
-import { computed, onMounted } from "vue";
-import { postsService } from "../services/PostsService.js";
-import { AppState } from "../AppState.js";
-import Login from "../components/Login.vue";
 
-onMounted(()=> getPosts())
-
-const posts = computed(()=> AppState.posts)
-
-async function getPosts(){
-  await postsService.getPosts()
-}
+onMounted(()=>{
+  getProfileByID
+})
+const route = useRoute()
+ async function getProfileByID(){
+const profileId = route.params.profileId
+ }
 
 </script>
 
+
 <template>
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
       <div class="col-md-3 text-center pt-5 border">
 <Login/>
@@ -37,8 +34,7 @@ async function getPosts(){
   </div>
 </template>
 
-<style scoped lang="scss">
 
+<style lang="scss" scoped>
 
 </style>
-
