@@ -18,6 +18,7 @@ class PostsService {
     AppState.personalPosts = currentPosts
   }
   async getProfileByID(profileId) {
+    AppState.profile = null
     const response = await api.get(`/api/profiles/${profileId}`)
     const profile = new Account(response.data)
     AppState.profile = profile

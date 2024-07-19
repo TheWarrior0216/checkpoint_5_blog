@@ -49,9 +49,19 @@ async function getPostsByID() {
           <div class="col-12 bg-info sticky-top py-3">
 <h4>LOGO HERE</h4>
           </div>
-          <div class="col-md-9 shadow border my-3 coverImg">
-<h1>Hello There, General Kenobi
-</h1>
+          <div class="col-md-9 ">
+<div class="row shadow border m-4">
+  <div class="col-12  coverImg text-end">
+<img class="pfp mt-2" :src="profile?.picture" :alt="profile?.name">
+  </div>
+  <div class="col-12">
+<h5 class="m-3 ps-3 fw-light">{{ profile?.class }}</h5>
+<h2 class="m-3 ps-3">{{ profile?.name }}</h2>
+<p class="m-3 ps-3">{{ profile?.bio }}</p>
+
+
+  </div>
+</div>
           </div>
           <div v-for="post in posts" :key="post.id" class="col-md-9">
 <PostCard :postProp ='post' />
@@ -68,9 +78,16 @@ async function getPostsByID() {
 
 <style lang="scss" scoped>
 .coverImg{
-  height: 45dvh;
+  height: 25dvh;
   width:100%;
-  background-image: v-bind(profileCoverImg)
-  opacity
+  background-image: v-bind(profileCoverImg);
+  background-size: cover;
+  background-position: center;
+  
+}
+.pfp{
+  height: 20dvh;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
 }
 </style>
