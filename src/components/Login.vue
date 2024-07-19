@@ -7,6 +7,7 @@ const identity = computed(() => AppState.identity)
 const account = computed(() => AppState.account)
 async function login() {
   AuthService.loginWithPopup()
+  
 }
 async function logout() {
   AuthService.logout()
@@ -17,14 +18,17 @@ async function logout() {
 <template>
   <span class="navbar-text">
     <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login" v-if="!identity">
-      Login
+      <h3 title="Click Here To Make A Post, Like Comments, and So Much More">
+        Login Here!
+      </h3>
     </button>
     <div v-else>
-      <div class="dropdown my-2 my-lg-0">
-        <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown"
+      <div class="dropdown py-2 py-lg-0">
+        <div type="button" class=" border-0 selectable no-select" data-bs-toggle="dropdown"
           aria-expanded="false">
           <div v-if="account?.picture || identity?.picture">
-            <img :src="account?.picture || identity?.picture" alt="account photo" height="40" class="rounded" />
+            <img :src="account?.picture || identity?.picture" alt="account photo" class="pfp" />
+            <h2>{{ account?.name }}</h2>
           </div>
         </div>
         <div class="dropdown-menu dropdown-menu-sm-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
@@ -45,4 +49,10 @@ async function logout() {
   </span>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.pfp{
+  height: 20dvh;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+</style>
