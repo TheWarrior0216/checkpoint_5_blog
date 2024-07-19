@@ -7,7 +7,7 @@ import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
 
 
-defineProps({postProp: {type: Post}})
+defineProps({postProp: {type: Post}}, )
 
 async function like(ProfileId){
   try {
