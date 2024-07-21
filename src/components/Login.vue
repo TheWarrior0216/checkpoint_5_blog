@@ -36,7 +36,7 @@ async function logout() {
               <h2 class="my-5">Github Profile</h2>
             </a>
             <a v-if="account?.resume" :href="account?.resume">
-              <h2 class="my-5">resume Profile</h2>
+              <h2 class="my-5">Resume</h2>
             </a>
 
           </div>

@@ -7,6 +7,7 @@ import Login from "../components/Login.vue";
 onMounted(()=> getPosts())
 
 const posts = computed(()=> AppState.posts)
+const account = computed(()=> AppState.account)
 
 async function getPosts(){
   await postsService.getPosts()
@@ -26,6 +27,9 @@ async function getPosts(){
 <h4><img class="pfp-2" src="https://th.bing.com/th/id/R.8aa6d273d3f1190cbb4d9445c5d6e03a?rik=YlsXx7irZdltmA&riu=http%3a%2f%2fassets.stickpng.com%2fthumbs%2f5b90ed91196573108b203a76.png&ehk=jImicU7lM8xNcpZOAaW0MO8PPo%2fDy97uuuKsiRCq6jc%3d&risl=&pid=ImgRaw&r=0" alt="I hope that works">
   Welcome to The Eye
   </h4>
+          </div>
+          <div v-if="account" class="col-md-8 justify-content-center d-flex m-4">
+            <PostForm />
           </div>
           <div v-for="post in posts" :key="post.id" class="col-md-9">
 <PostCard :postProp ='post'/>

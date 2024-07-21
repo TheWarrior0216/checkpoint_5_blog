@@ -1,11 +1,11 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import Pop from "../utils/Pop.js";
 import { postsService } from "../services/PostsService.js";
 import { AppState } from "../AppState.js";
 
-onMounted(()=>{
+watchEffect(()=>{
   getProfileByID()
   getPostsByID()
 })
@@ -54,25 +54,33 @@ async function getPostsByID() {
           <div class="col-md-9 ">
 <div class="row shadow border m-4">
   <div class="col-12  coverImg text-end">
-<img class="pfp mt-2" :src="profile?.picture" :alt="profile?.name">
+<img class="pfp mt-2" :src="profile?.picture" :alt="profile?.name"> <span v-if="profile?.graduated" class="mdi mdi-school-outline fs-1"></span>
   </div>
   <div class="col-12">
 <h5 class="m-3 ps-3 fw-light">{{ profile?.class }}</h5>
-<h2 class="m-3 ps-3">{{ profile?.name }}</h2>
-<p class="m-3 ps-3">{{ profile?.bio }} <span v-if="profile.graduated" class="mdi mdi-check-outline"></span></p>
-<span>
-<a v-if="profile?.linkedin" :href="profile?.linkedin"> 
 
-   <p class="my-5 mdi mdi-linkedin"></p>
-  </a>
-  <a v-if="profile?.github" :href="profile?.github">
-    <p class="my-5">Github Profile</p>
-  </a>
-            <a v-if="profile?.resume" :href="profile?.resume">
-              <p class="my-5">resume Profile</p>
-            </a>
-          </span>
-            
+<h2 class="m-3 ps-3"> <span class="">
+  
+  <div class="d-flex flex-direction column justify-content-between" >
+    {{ profile?.name }}
+    <div class="d-flex flex-direction column" >
+
+      <a v-if="profile?.linkedin" :href="profile?.linkedin"> 
+        
+        <p class=" fs-3 mdi mdi-linkedin"></p>
+      </a>
+      <a v-if="profile?.github" :href="profile?.github">
+        <p class=" fs-3"><i class="mdi mdi-github" ></i></p>
+      </a>
+      <a v-if="profile?.resume" :href="profile?.resume">
+        <p class=" fs-3"><i class="mdi mdi-note-outline"></i></p>
+      </a>
+    </div>
+            </div>
+</span> </h2>
+<p class="m-3 ps-3">{{ profile?.bio }} </p>
+
+
 
   </div>
 </div>
