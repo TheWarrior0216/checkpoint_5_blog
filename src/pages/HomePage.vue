@@ -31,12 +31,13 @@ async function getPosts(){
           <div v-if="account" class="col-md-8 justify-content-center d-flex m-4">
             <PostForm />
           </div>
-          <div v-for="post in posts" :key="post.id" class="col-md-9">
+          <div class="col-sm-1 col-md-12">
+<Goblins />
+</div>
+          <div v-for="post in posts" :key="post.id" class="col-md-10">
 <PostCard :postProp ='post'/>
-          </div>
-          <div class="col-sm-1 col-md-4">
+</div>
 
-          </div>
         </div>
       </div>
     </div>

@@ -13,5 +13,6 @@ export const AppState = reactive({
   profile: null,
   /**@type {Post []} */
   personalPosts: [],
-
+  /**@type {Goblin []} */
+  goblina: []
 })
