@@ -5,7 +5,7 @@ import { Post } from "../models/Post.js";
 import { RouterLink } from "vue-router";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop.js";
-
+const account = computed(()=> AppState.account)
 
 defineProps({postProp: {type: Post}}, )
 
@@ -17,6 +17,20 @@ async function like(ProfileId){
     Pop.error(error);
   }
 }
+
+async function decimate(decimationItem){
+  try {
+    const confirmation = await Pop.confirm(`Hello ${account.value.name} would you like to decimate this post?`)
+    if(confirmation){
+    await postsService.decimate( decimationItem)
+    }
+    return
+  }
+  catch (error){
+    Pop.error(error);
+  }
+}
+
 </script>
 
 
@@ -36,7 +50,8 @@ async function like(ProfileId){
     <div class="col-12">
       <p>{{ postProp.body }}</p>
       <img v-if="postProp.imgUrl" :src="postProp.imgUrl" alt="some Image" class="img-fluid img-fix">
-      <div class="text-end">
+      <div v-if="account" :class="account?.id == postProp.creatorId ? 'justify-content-between' : 'justify-content-end'" class=" d-flex  text-end">
+        <button @click="decimate(postProp.id)" v-if="account.id == postProp.creatorId" class="btn mdi mdi-delete-outline fs-4 text-danger">Delete</button>
         <i @click="like(`${postProp.id}`)" class="mdi mdi-heart-outline selectable fs-4"> {{ postProp.likes.length }}</i>
       </div>
     </div>

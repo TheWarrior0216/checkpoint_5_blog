@@ -5,6 +5,11 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class PostsService {
+  async decimate(decimationItem) {
+    const DecimationIndex = AppState.posts.findIndex((id) => id = id.id)
+    AppState.posts.splice(DecimationIndex, 1)
+    await api.delete(`api/posts/${decimationItem}`)
+  }
   async createPost(carData) {
     const response = await api.post('api/posts', carData)
     logger.log(response)
