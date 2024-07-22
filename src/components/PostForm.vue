@@ -13,6 +13,11 @@ const carData = ref({
 async function createPost(){
   try {
     await postsService.createPost(carData.value)
+
+    carData.value = {
+  body: '',
+  imgUrl: ''
+}
   }
   catch (error){
     Pop.error(error);
@@ -32,7 +37,19 @@ async function createPost(){
       <div class="m-3">
 <form @submit.prevent="createPost()" class="text-end w-101" >
   <textarea v-model="carData.body" class="form-control " id="postBox" rows="4"  placeholder="Enter a Post Here!!!"></textarea>
-  <button type="submit" class="btn mdi mdi-send-outline"> Post</button>
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="d-flex flex-direciton-column gap-1">
+<button class="btn mdi mdi-note-plus-outline mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Add Image Here
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <textarea v-model="carData.imgUrl" placeholder="https://" class="card card-body" >
+    
+  </textarea>
+</div>
+    <button type="submit" class="btn mdi mdi-send-outline"> Post</button>
+  </div>
 </form>
 </div>
     </div>
