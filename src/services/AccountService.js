@@ -11,11 +11,16 @@ class AccountService {
       AppState.account = new Account(res.data)
       if (AppState.account) {
 
-        Pop.success('Succesfully Loged In!')
+        Pop.success(`Succesfully Loged In, Happy Posting ${AppState.account.name}`)
       }
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
+  }
+
+  async editAccount(formData) {
+    const response = await api.put(`account`, formData)
+    logger.log(response)
   }
 }
 

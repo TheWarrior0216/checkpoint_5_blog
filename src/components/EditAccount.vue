@@ -1,6 +1,8 @@
 <script setup>
 import { AppState } from '../AppState';
 import { computed, ref, onMounted } from 'vue';
+import Pop from "../utils/Pop.js";
+import { accountService } from "../services/AccountService.js";
 
 const editableAccountInfo = ref( {
 name: '',
@@ -17,7 +19,7 @@ onMounted(()=> editableAccountInfo.value = {...AppState.account})
 
 async function editAccount(){
   try {
-    await accountService.editAccount(editableAccountInfo)
+    await accountService.editAccount(editableAccountInfo.value)
   }
   catch (error){
     Pop.error(error);
