@@ -5,36 +5,37 @@ import Pop from "../utils/Pop.js";
 import { postsService } from "../services/PostsService.js";
 import { AppState } from "../AppState.js";
 
-watchEffect(()=>{
-  getProfileByID()
-  getPostsByID()
-})
 
 const profile = computed(()=> AppState.profile)
 const posts = computed(()=> AppState.personalPosts)
 const profileCoverImg = computed(() => `url(${profile.value?.coverImg})`)
 const route = useRoute()
- async function getProfileByID(){
+async function getProfileByID(profileId){
   try {
-    const profileId = route.params.profileId
+    
     await postsService.getProfileByID(profileId)
   }
   catch (error){
     Pop.error(error);
   }
  }
+ 
 
+ async function getPostsByID(profileId) {
+   try {
 
-async function getPostsByID() {
-  try {
-
-    const profileId = route.params.profileId
+     
     await postsService.getPostsByID(profileId)
   }
   catch (error){
     Pop.error(error);
   }
 }
+watchEffect(()=>{
+  const profileId = route?.params?.profileId
+  getProfileByID(profileId)
+  getPostsByID(profileId)
+})
 </script>
 
 
