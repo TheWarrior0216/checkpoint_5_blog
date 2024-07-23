@@ -52,7 +52,10 @@ async function decimate(decimationItem){
       <img v-if="postProp.imgUrl" :src="postProp.imgUrl" alt="some Image" class="img-fluid img-fix">
       <div v-if="account" :class="account?.id == postProp.creatorId ? 'justify-content-between' : 'justify-content-end'" class=" d-flex  text-end">
         <button @click="decimate(postProp.id)" v-if="account.id == postProp.creatorId" class="btn mdi mdi-delete-outline fs-4 text-danger">Delete</button>
-        <i @click="like(`${postProp.id}`)" class="mdi mdi-heart-outline selectable fs-4"> {{ postProp.likes.length }}</i>
+        <div>
+          <i v-if="postProp.likes.isliked" @click="like(`${postProp.id}`)" class="mdi mdi-heart-outline selectable fs-4"> {{ postProp.likes.length }}</i>
+          <i v-else @click="like(`${postProp.id}`)" class="mdi mdi-heart-outline selectable fs-4"> {{ postProp.likes.length }}</i>
+        </div>
       </div>
     </div>
   </div>

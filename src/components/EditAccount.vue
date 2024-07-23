@@ -9,6 +9,7 @@ name: '',
 picture: '',
 bio:'',
 class:'',
+graduated: false,
 coverImg:'',
 linkedin:'',
 github:'',
@@ -53,6 +54,10 @@ async function editAccount(){
   <input v-model="editableAccountInfo.class" type="text" class="form-control" id="Class" placeholder="">
   <label for="Class">Class</label>
 </div>
+<div class="mb-3 form-check">
+    <input v-model="editableAccountInfo.graduated" type="checkbox" class="form-check-input" id="Graduated">
+    <label class="form-check-label" for="Graduated">Are You Graduated</label>
+  </div>
 <div class="form-floating mb-3">
   <input v-model="editableAccountInfo.linkedin" type="text" class="form-control" id="linkedin" placeholder="">
   <label for="linkedin">Linkedin</label>

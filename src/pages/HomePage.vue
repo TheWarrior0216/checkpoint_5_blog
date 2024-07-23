@@ -18,7 +18,7 @@ async function getPosts(){
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3 text-center pt-5 border">
+      <div class="col-md-3 text-center pt-5 border sticky-top">
 <Login/>
       </div>
       <div class="col-md-9">
